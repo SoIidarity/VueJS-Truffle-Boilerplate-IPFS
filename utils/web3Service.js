@@ -37,10 +37,10 @@ const getEthWallets = () =>
         })
     })
 
-async function createContractInstance(){
+const createContractInstance = async c => {
     try {
-        const newContract = await Contract.new({
-            from: this.$store.state.defaultEthWallet,
+        const newContract = await Contract.new(c.startingValue, {
+            from: c.from,
             gasPrice: 2000000000,
             gas: '2000000'
         })

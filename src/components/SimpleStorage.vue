@@ -1,7 +1,15 @@
 <template>
   <div class="hello">
     <h1>Simple Storage Demo</h1>
-      <el-button @click="deployContract">Deploy Contract</el-button>
+    <label class="label">Starting Value</label>
+    
+    <input v-model="contract.startingValue" name="startingValue" required class="input" type="number" min=0, max=100>
+    <br>    
+    <el-button @click="deployContract" class="button is-primary is-fullwidth subtitle">Store Value</el-button>
+        
+    
+
+
 
   </div>
 </template>
@@ -13,14 +21,18 @@ export default {
   name: "SimpleStorage",
   data() {
     return {
-      sampleData: 0
+      sampleData: 0,
+      contract: {
+          startingValue:0,
+          from: this.$store.state.defaultEthWallet
+      }
     };
   },
   methods: {
     async deployContract() {
-        const contract = await createContractInstance()
-        console.log(contract)
-
+        console.log("button")
+      const contract = await createContractInstance(this.$data.contract);
+      console.log(contract);
     }
   }
 };
