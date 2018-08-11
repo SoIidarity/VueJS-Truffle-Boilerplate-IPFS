@@ -4,8 +4,15 @@ contract('SimpleStorage', function(accounts) {
 
     const account0 = accounts[0];
 
-    it('can set value', async () => {
-        const simpleStorage = await SimpleStorage.deployed();
+    it('can set values', async () => {
+        
+        const startingValue = 3;
+        
+        let simpleStorage = await SimpleStorage.new(startingValue);
+
+        const setConstructorValue = await simpleStorage.get({from: account0});
+        
+        assert.equal(startingValue, setConstructorValue, 'Constructor value not set correctly');
 
         const testValue = 5;
         
