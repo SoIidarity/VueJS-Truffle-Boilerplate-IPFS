@@ -3,14 +3,21 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-
+    netIdString: '',
+    defaultEthWallet: ''
   },
+  getters: {},
   mutations: {
-
+    setNetworkId(state, netIdString) {
+      state.netIdString = netIdString
+    },
+    setDefaultEthWallet(state, walletAddress) {
+      state.defaultEthWallet = walletAddress
+    }
   },
-  actions: {
-
-  }
+  actions: {}
 })
+
+export default store
