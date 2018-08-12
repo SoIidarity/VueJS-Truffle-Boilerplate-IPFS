@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     netIdString: '',
+    walletBalance: '',
     defaultEthWallet: ''
   },
   getters: {},
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     setDefaultEthWallet(state, walletAddress) {
       state.defaultEthWallet = walletAddress
+    },
+    setWalletBalance(state, walletBalance){
+      state.walletBalance = walletBalance
     }
   },
   actions: {}

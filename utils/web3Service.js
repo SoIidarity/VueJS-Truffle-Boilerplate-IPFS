@@ -1,6 +1,8 @@
 import Web3 from 'web3'
 import contract from 'truffle-contract'
 import contractJSON from '../build/contracts/SimpleStorage.json'
+import store from '../src/store'
+
 const Contract = contract(contractJSON)
 
 if (typeof web3 !== 'undefined') {
@@ -28,6 +30,11 @@ const getNetIdString = async () => {
     }
 }
 
+const getWalletBalance = async () => {
+    const walletBalance = await web3.eth.getBalance(store.state.defaultEthWallet)
+    return walletBalance
+}
+
 const getEthWallets = () =>
     new Promise((resolve, reject) => {
         web3.eth.getAccounts((err, res) => {
@@ -47,6 +54,7 @@ const createContractInstance = async (c) => {
 
 export {
     getEthWallets,
+    getWalletBalance,
     getNetIdString,
     createContractInstance
 }

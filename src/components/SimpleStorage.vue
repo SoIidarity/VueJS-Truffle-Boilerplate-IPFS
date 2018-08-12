@@ -3,16 +3,13 @@
       Wallet Address: {{this.$store.state.defaultEthWallet}}
       <br>
       Network Name: {{this.$store.state.netIdString}} 
+      <br>
+      Wallet Balance: {{this.$store.state.walletBalance}} 
     <h1>Simple Storage Demo</h1>
     <label class="label">Starting Value</label>
     <input v-model="contract.startingValue" name="startingValue" required class="input" type="number" min=0, max=100>
     <br>    
     <el-button type="submit" @click="deployContract" class="button is-primary is-fullwidth subtitle">Store Value</el-button>
-        
-    
-
-
-
   </div>
 </template>
 
@@ -41,7 +38,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;

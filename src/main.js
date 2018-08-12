@@ -8,7 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import {
   getNetIdString,
-  getEthWallets
+  getEthWallets,
+  getWalletBalance
 } from '../utils/web3Service.js'
 
 Vue.use(ElementUI)
@@ -19,10 +20,15 @@ setInterval(function () {
   (async () => {
     try {
       const ethWallets = await getEthWallets()
-      const netIdString = await getNetIdString()
       if (store.state.defaultEthWallet != ethWallets[0]) {
         store.commit('setDefaultEthWallet', ethWallets[0])
       }
+      const walletBalance = await getWalletBalance()
+      if (store.state.walletBalance != walletBalance) {
+        store.commit('setWalletBalance', walletBalance)
+      }
+      
+      const netIdString = await getNetIdString()
       if (store.state.netIdString != netIdString) {
         store.commit('setNetworkId', netIdString)
       }
