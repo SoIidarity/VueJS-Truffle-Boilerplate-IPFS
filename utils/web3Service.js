@@ -1,6 +1,5 @@
 import Web3 from 'web3'
 import contract from 'truffle-contract'
-
 import contractJSON from '../build/contracts/SimpleStorage.json'
 const Contract = contract(contractJSON)
 
@@ -37,22 +36,17 @@ const getEthWallets = () =>
         })
     })
 
-const createContractInstance = async c => {
-    try {
+const createContractInstance = async (c) => {
         const newContract = await Contract.new(c.startingValue, {
             from: c.from,
             gasPrice: 2000000000,
             gas: '2000000'
         })
         return newContract
-    } catch (e) {
-        console.log(e, 'Error creating contract...')
-        return undefined
-    }
 }
 
 export {
-    createContractInstance,
     getEthWallets,
-    getNetIdString
+    getNetIdString,
+    createContractInstance
 }

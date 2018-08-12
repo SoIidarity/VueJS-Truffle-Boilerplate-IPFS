@@ -1,11 +1,13 @@
 <template>
   <div class="hello">
+      Wallet Address: {{this.$store.state.defaultEthWallet}}
+      <br>
+      Network Name: {{this.$store.state.netIdString}} 
     <h1>Simple Storage Demo</h1>
     <label class="label">Starting Value</label>
-    
     <input v-model="contract.startingValue" name="startingValue" required class="input" type="number" min=0, max=100>
     <br>    
-    <el-button @click="deployContract" class="button is-primary is-fullwidth subtitle">Store Value</el-button>
+    <el-button type="submit" @click="deployContract" class="button is-primary is-fullwidth subtitle">Store Value</el-button>
         
     
 
@@ -15,7 +17,7 @@
 </template>
 
 <script>
-import createContractInstance from "../../utils/web3Service.js";
+import {createContractInstance, getNetIdString} from "../../utils/web3Service.js";
 
 export default {
   name: "SimpleStorage",
@@ -24,13 +26,14 @@ export default {
       sampleData: 0,
       contract: {
           startingValue:0,
-          from: this.$store.state.defaultEthWallet
+          from: ''
       }
     };
   },
   methods: {
     async deployContract() {
-        console.log("button")
+        //set the from the current EthWallet
+      this.$data.contract.from = this.$store.state.defaultEthWallet
       const contract = await createContractInstance(this.$data.contract);
       console.log(contract);
     }
