@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/EthereumContracts">Ethereum Contracts </router-link>
+      <router-link to="/EthereumContracts">Ethereum Contracts </router-link> |
+      <router-link to="/IPFSDB">IPFS Database</router-link>
     </div>
     <router-view/>
   </div>
