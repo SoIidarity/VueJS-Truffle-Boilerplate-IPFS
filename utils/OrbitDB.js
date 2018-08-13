@@ -2,27 +2,34 @@ const IPFS = require('ipfs')
 const OrbitDB = require('orbit-db')
 import store from '../src/store'
 
-// OrbitDB uses Pubsub which is an experimental feature
-// and need to be turned on manually.
-// Note that these options need to be passed to IPFS in
-// all examples in this document even if not specfied so.
-const ipfsOptions = {
+function handleError(e) {
+    console.error(e.stack)
+}
+
+
+let orbitdb, db
+
+const ipfs = new IPFS({
     EXPERIMENTAL: {
         pubsub: true
     }
-}
-
-// Create IPFS instance
-const ipfs = new IPFS(ipfsOptions)
-
+})
+//This implementation uses IPFS log. this can be easily changed to other forms, such as document store
 ipfs.on('ready', async () => {
-    const orbitdb = new OrbitDB(ipfs)
-    const db = await orbitdb.keyvalue('first-database')
+    orbitdb = new OrbitDB(ipfs)
+    db = await orbitdb.eventlog('SampleLogDB')
+
+    console.log("DB address")
     console.log(db.address.toString())
-    await db.put('name', 'hello')
-    const value = db.get('name')
-    console.log(value)
+
 })
 
-const value = 5
-export {value}
+const addValueToLog = async (c) => {
+    db.add(c)
+}
+
+const getValuesFromLog = async (c) => {
+    return db.iterator({ limit: 5 }).collect()
+}
+
+export {addValueToLog, getValuesFromLog}
