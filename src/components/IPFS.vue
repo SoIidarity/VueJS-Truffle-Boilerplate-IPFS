@@ -1,7 +1,18 @@
 <template>
     <div class="OrbitDB">
         <h1>IPFS Implementation</h1>
-        <el-button @click="add" class="button is-primary is-fullwidth subtitle">Add To IPFS</el-button>
+        <p>Add Text</p>
+        <input v-model="inputText" name="inputText" class="input" type="text">
+        <br>
+        <el-button @click="addText" class="button is-primary is-fullwidth subtitle">Add To IPFS</el-button>
+        <br>
+        {{createdAddress}}
+        <p>Load Hash</p>
+        <input v-model="loadAddress" name="loadAddress" class="input" type="text">
+        <br>
+        <el-button @click="loadHash" class="button is-primary is-fullwidth subtitle">Load Hash</el-button>
+        <br>
+        {{retreivedText}}
     
     </div>
 </template>
@@ -13,12 +24,21 @@
         name: "IPFS",
         data() {
             return {
+                inputText: '',
+                createdAddress: '',
+                loadAddress: '',
+                retreivedText: ''
             };
         },
         methods: {
-            async add() {
-                await uploadFile()
+            async addText() {
+                let createdAddress = await uploadFile(this.$data.inputText)
+                this.$data.createdAddress = createdAddress
             },
+            async loadHash() {
+               let returnedValue = await viewFile(this.$data.loadAddress)
+               this.$data.retreivedText = returnedValue
+            }
         }
     }
 </script>

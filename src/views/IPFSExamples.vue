@@ -1,8 +1,8 @@
 <template>
-    <div class="IPFS">
+    <div class="IPFSExamples">
         <OrbitDB/>
         <br>
-        <IPFS>
+        <IPFS/>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
     import IPFS from '@/components/IPFS.vue'
 
     export default {
-        name: 'IPFS',
+        name: 'IPFSExamples',
         components: {
             OrbitDB,
             IPFS
