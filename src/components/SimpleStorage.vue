@@ -7,7 +7,7 @@
       Wallet Balance: {{this.$store.state.walletBalance}} 
     <h1>Simple Storage Demo</h1>
     Starting Value
-    <input v-model="contract.startingValue" name="startingValue" required class="input" type="number" min=0, max=100>
+    <input v-model="contractCreation.startingValue" name="startingValue" required class="input" type="number" min=0, max=100>
     <br>    
     <el-button type="submit" @click="deployContract" class="button is-primary is-fullwidth subtitle">Store Value</el-button>
     <br>
