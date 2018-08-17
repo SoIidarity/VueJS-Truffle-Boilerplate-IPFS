@@ -22,6 +22,7 @@ const uploadFile = async (c) => {
     const filesAdded = await ipfs.files.add({
         content: Buffer.from(c)
     })
+    /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
     console.log('Added file:', filesAdded[0].hash)
     return filesAdded[0].hash
 }
