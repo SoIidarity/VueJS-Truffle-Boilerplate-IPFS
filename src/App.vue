@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/EthereumContracts">Ethereum Contracts </router-link> |
-      <router-link to="/IPFSDB">IPFS Database</router-link>
+      <router-link to="/IPFSExamples">IPFS Examples</router-link>
     </div>
     <router-view/>
   </div>

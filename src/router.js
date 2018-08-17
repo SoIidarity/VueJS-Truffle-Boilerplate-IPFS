@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import EthereumContracts from './views/EthereumContracts.vue'
-import IPFSDB from './views/IPFSDB.vue'
+import IPFSExamples from './views/IPFSExamples.vue'
 
 Vue.use(Router)
 
@@ -19,9 +19,9 @@ export default new Router({
             component: EthereumContracts
         },
         {
-            path: '/IPFSDB',
-            name: 'IPFSDB',
-            component: IPFSDB
+            path: '/IPFSExamples',
+            name: 'IPFSExamples',
+            component: IPFSExamples
         },
     ]
 })

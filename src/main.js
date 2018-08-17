@@ -7,37 +7,22 @@ import store from './store'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import {
-  getNetIdString,
-  getEthWallets,
-  getWalletBalance
+  setWalletStatus
 } from '../utils/web3Service.js'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(VueForm)
 
+//Set wallet variables from web3 every second(if changed)
 setInterval(function () {
   (async () => {
-    try {
-      const ethWallets = await getEthWallets()
-      if (store.state.defaultEthWallet != ethWallets[0]) {
-        store.commit('setDefaultEthWallet', ethWallets[0])
-      }
-      const walletBalance = await getWalletBalance()
-      if (store.state.walletBalance != walletBalance) {
-        store.commit('setWalletBalance', walletBalance)
-      }
-      
-      const netIdString = await getNetIdString()
-      if (store.state.netIdString != netIdString) {
-        store.commit('setNetworkId', netIdString)
-      }
-      
-    } catch (e) {
-      console.log(e)
-    }
+    setWalletStatus()
   })()
 }, 1000);
+
+
+
 
 new Vue({
   router,

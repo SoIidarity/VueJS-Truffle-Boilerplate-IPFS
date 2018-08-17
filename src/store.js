@@ -7,7 +7,10 @@ const store = new Vuex.Store({
   state: {
     netIdString: '',
     walletBalance: '',
-    defaultEthWallet: ''
+    defaultEthWallet: '',
+    isWalletUnlocked: false,
+    isInjected: false,
+    ipfsNetworkState: false
   },
   getters: {},
   mutations: {
@@ -19,6 +22,15 @@ const store = new Vuex.Store({
     },
     setWalletBalance(state, walletBalance){
       state.walletBalance = walletBalance
+    },
+    setIPFSNetworkState(state, ipfsNetworkState){
+      state.IPFSNetworkState = ipfsNetworkState
+    },
+    setisInjected(state,isInjected){
+      state.isInjected = isInjected
+    },
+    setisWalletUnlocked(state, isWalletUnlocked){
+      state.isWalletUnlocked = isWalletUnlocked
     }
   },
   actions: {}
